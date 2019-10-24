@@ -1,6 +1,6 @@
 import React from 'react'
 import blogService from '../services/blogs'
-import { NavigationContainer, NavigationElement, LogoutButton, NavigationGroup } from './Header.styles'
+import { NavigationContainer, NavigationElement, Button, NavigationGroup } from './Header.styles'
 
 import { connect } from 'react-redux'
 import { logout } from '../actions/user'
@@ -33,7 +33,7 @@ const Header = withRouter(({ user, logout, history }) => {
         <NavigationElement>{user.name} logged in</NavigationElement>
       </NavigationGroup>
       <NavigationGroup>
-        <NavigationElement ><LogoutButton onClick={handleLogout}>logout</LogoutButton></NavigationElement>
+        <NavigationElement ><Button onClick={handleLogout}>logout</Button></NavigationElement>
       </NavigationGroup>
     </NavigationContainer>
   )

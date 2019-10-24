@@ -39,12 +39,14 @@ function App({ initialize, user, setUser, setUsers, message }) {
       <Router>
         <div className="app-container">
           <Header />
-          <h1>Blog app</h1>
-          {message && <Notification message={message} />}
-          <Route exact path='/' render={() => user.hasOwnProperty('name') ? <Home /> : <Login setUser={setUser} />} />
-          <Route exact path='/users' component={Users} />
-          <Route exact path='/users/:id' component={User} />
-          <Route exact path='/blogs/:id' component={Blog} />
+          <div className='app-content'>
+            <h1>Blog app</h1>
+            {message && <Notification message={message} />}
+            <Route exact path='/' render={() => user.hasOwnProperty('name') ? <Home /> : <Login setUser={setUser} />} />
+            <Route exact path='/users' component={Users} />
+            <Route exact path='/users/:id' component={User} />
+            <Route exact path='/blogs/:id' component={Blog} />
+          </div>
         </div>
       </Router>
     </div>

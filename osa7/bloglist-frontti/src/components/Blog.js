@@ -14,14 +14,14 @@ const Blog = (props) => {
   const styles = {
     padding: 10,
     borderWidth: 1,
-    borderBottom: 'solid red',
-    width: '100%'
+    borderBottom: 'dashed #bbb',
+    width: '90%'
   }
 
   return (
     <div style={styles}>
       <div className="maximize">
-        <Link to={`/blogs/${blog.id}`}>{blog.title} {blog.author}</Link>
+        <Link to={`/blogs/${blog.id}`} style={{ textDecoration: 'none' }}>{blog.title} {blog.author}</Link>
       </div>
     </div>
   )

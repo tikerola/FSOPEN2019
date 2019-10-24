@@ -1,6 +1,8 @@
 
 import React from 'react'
 import { useField } from '../hooks/index'
+import { Button } from './Header.styles'
+import { ButtonContainer, Input, FormContainer, Label } from './newBlogForm.styles'
 
 const NewBlogForm = ({ handleSubmit, setShowForm }) => {
 
@@ -17,29 +19,31 @@ const NewBlogForm = ({ handleSubmit, setShowForm }) => {
   }
 
   return (
-    <div>
+    <FormContainer>
       <h2>Create new</h2>
 
-      <form onSubmit={submit} >
+      <form >
         <div>
-          <label htmlFor="title">Title: </label>
-          <input {...title} />
+          <Label htmlFor="title">Title: </Label>
+          <Input {...title} />
         </div>
 
         <div>
-          <label htmlFor="author">Author: </label>
-          <input {...author} />
+          <Label htmlFor="author">Author: </Label>
+          <Input {...author} />
         </div>
 
         <div>
-          <label htmlFor="url">Url: </label>
-          <input {...url} />
+          <Label htmlFor="url">Url: </Label>
+          <Input {...url} />
         </div>
-
-        <button>Send</button>
+        <ButtonContainer>
+          <Button onClick={submit}>Send</Button>
+          <Button onClick={() => setShowForm(false)}>Cancel</Button>
+        </ButtonContainer>
       </form>
-      <button onClick={() => setShowForm(false)}>Cancel</button>
-    </div>
+
+    </FormContainer>
   )
 }
 
