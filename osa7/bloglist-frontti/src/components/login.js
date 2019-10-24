@@ -1,24 +1,26 @@
 import React from 'react'
 import { login } from '../services/login'
 import blogServices from '../services/blogs'
-import Notification from './notification'
 import { useField } from '../hooks/index'
 import { connect } from 'react-redux'
 import { setMessage } from '../actions/notification'
+import { Button } from './Header.styles'
+import { Input, Label } from './newBlogForm.styles'
+
+
 
 
 const Login = props => {
   const [username, usernameReset] = useField('text')
   const [password, passwordReset] = useField('password')
 
-  const { message, setMessage } = props
+  const { setMessage } = props
 
   const handleSubmit = async e => {
     e.preventDefault()
     try {
       const user = await login({ username: username.value, password: password.value })
-      console.log(user, '**********************************')
-      
+
       if (!user.hasOwnProperty('name')) {
         throw new Error('Login failed')
       }
@@ -35,34 +37,30 @@ const Login = props => {
   }
 
   return (
-    <div>
-      <h1>Log in to application</h1>
-      { message && <Notification message={message} />}
+    <div style={{ width: '60%', margin: '70px auto 0' }}>
+      <h2 style={{ color: '#ddd' }}>Log in to application</h2>
 
-      <form onSubmit={handleSubmit} >
+      <form >
         <div>
-          <label htmlFor="username">username: </label>
-          <input {...username} />
+          <Label htmlFor="username" style={{ width: '100px', color: '#bbb' }}>username: </Label>
+          <Input {...username} style={{ width: '250px' }} />
         </div>
 
         <div>
-          <label htmlFor="password">password: </label>
-          <input {...password} />
+          <Label htmlFor="password" style={{ width: '100px', color: '#bbb' }}>password: </Label>
+          <Input {...password} style={{ width: '250px' }} />
         </div>
 
-        <button>login</button>
+        <Button onClick={handleSubmit} style={{ marginTop: '20px' }}>login</Button>
       </form>
     </div>
 
   )
 }
 
-const mapStateToProps = state => ({
-  message: state.notification
-})
 
 const mapDispatchToProps = {
   setMessage
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login)

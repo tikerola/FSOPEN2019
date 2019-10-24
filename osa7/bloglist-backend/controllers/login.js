@@ -11,7 +11,7 @@ loginRouter.post('/', async (req, res, next) => {
 
     const user = await User.findOne({ username }) 
     if(!user) {
-        console.log('********************', user)
+        
         res.status(401).send('Unauthorized user')
     }
     
@@ -31,7 +31,8 @@ loginRouter.post('/', async (req, res, next) => {
     res.status(200).send({
         username: user.username,
         name: user.name,
-        token
+        token,
+        id: userForToken.id
     })
 
 })

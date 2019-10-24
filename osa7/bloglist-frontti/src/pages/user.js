@@ -1,17 +1,21 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
+import { UsersContainer } from './users'
 
 const User = ({ filteredBlogs }) => {
 
+  if (filteredBlogs.length === 0)
+    return null
+
   return (
-    <div>
-      <h1>{filteredBlogs[0].user.name}</h1>
-      <h2>Added blogs</h2>
-      <ul>
+    <UsersContainer >
+      <h2 style={{ color: '#ddd' }}>{filteredBlogs[0].user.name}</h2>
+      <h3 style={{ color: '#999' }}>Added blogs</h3>
+      <ul style={{ listStyleType: 'none' }}>
         { filteredBlogs.map(blog => <li key={blog.id}>{blog.title}</li>) }
       </ul>
-    </div>
+    </UsersContainer>
   )
 }
 

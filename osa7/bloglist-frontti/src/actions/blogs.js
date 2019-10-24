@@ -20,3 +20,16 @@ export const addToBlogs = blog => {
     blog
   }
 }
+
+export const update = blog => {
+
+  return {
+    type: 'UPDATE',
+    blog
+  }
+}
+
+export const removeBlog = id => ({
+  type: 'REMOVE_BLOG',
+  id
+})

@@ -38,6 +38,12 @@ const put = async (id, info) => {
 
 }
 
+const postComment = async (id, comment) => {
+  console.log(id, comment, '¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤4')
+  const res = await axios.post(`${baseUrl}/${id}/comments`, { comment })
+  return res.data
+}
+
 
 const remove = async id => {
   const config = {
@@ -53,4 +59,4 @@ const remove = async id => {
 
 
 
-export default { getAll, restoreToken, create, put, remove }
+export default { getAll, restoreToken, create, put, remove, postComment }

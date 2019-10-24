@@ -48,6 +48,24 @@ router.post('/', async (request, response, next) => {
 
 })
 
+router.post('/:id/comments', async (req, res, next) => {
+ 
+    const { comment } = req.body
+    
+
+    try {
+        const blog = await Blog.findById(req.params.id)
+
+        blog.comments = blog.comments.concat(comment)
+        const savedBlog = await blog.save()
+
+        res.status(201).send(savedBlog)
+    }
+    catch (error) {
+        next(error)
+    }
+})
+
 router.delete('/:id', async (req, res, next) => {
 
     try {

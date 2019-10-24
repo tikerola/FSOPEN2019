@@ -6,7 +6,9 @@ export const FormContainer = styled.div`
   border: 1px solid black;
   border-radius: 5px;
   padding: 15px;
-  background: #999;
+  color: #ddd;
+  background: #666;
+  margin-bottom: 40px;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -20,11 +22,14 @@ export const ButtonContainer = styled.div`
 
 export const Input = styled.input`
   border: none;
-  background: #999;
+  background: inherit;
   border-bottom: 1px solid #555;
   display: inline;
-  width: 70%;
+  width: ${props => props.width || '70%'};
   margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  color: #ddd;
 
   :focus {
     outline: none;
@@ -32,7 +37,7 @@ export const Input = styled.input`
 `
 
 export const Label = styled.label`
-  color: #555;
+  color: #ddd;
   display: inline-block;
-  width: 20%;
+  width: 22%;
 `

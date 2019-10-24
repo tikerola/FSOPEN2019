@@ -36,23 +36,25 @@ export const NavigationElement = styled.div`
 `
 
 export const Button = styled.div`
-  width: 80px;
-  background: blue;
+  width: ${(props) => props.width || '80px'};
+  background: gray;
   border-radius: 5px;
   cursor: pointer;
   padding: 4px;
   text-align: center;
-  border: 1px solid white;
+  border: 1px solid black;
   color: white;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  margin-bottom: ${props => props.marginBottom || '0px' };
 
   :hover {
     background: gray;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    
   }
 
 `

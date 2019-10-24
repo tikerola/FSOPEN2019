@@ -27,15 +27,18 @@ const Blogs = ({ user, blogs, addToBlogs, setMessage }) => {
     }
   }
 
+  if (!blogs)
+    return null
+
   return (
-    <div>
+    <div style={{ marginTop: '50px' }}>
       {showForm ?
         <NewBlogForm
           handleSubmit={handleSubmit}
           setShowForm={setShowForm}
         />
         :
-        <Button onClick={() => setShowForm(true)}>new note</Button>}
+        <Button width='200px' marginBottom='40px' onClick={() => setShowForm(true)}>Create a new Blog</Button>}
 
       {blogs.sort((a, b) => b.likes - a.likes).map(blog => {
         return <Blog key={blog.id} blog={blog} user={user} />

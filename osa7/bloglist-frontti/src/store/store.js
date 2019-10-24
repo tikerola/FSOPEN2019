@@ -13,6 +13,6 @@ const rootReducer = combineReducers({
   users: usersReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(logger, thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export default store
