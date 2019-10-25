@@ -40,8 +40,10 @@ router.post('/', async (request, response, next) => {
         const result = await blog.save()
         user.blogs = user.blogs.concat(result._id)
         await user.save()
+        
+        const returnedBlog = await Blog.findById(result._id).populate('user')
 
-        response.status(201).json(result.toJSON())
+        response.status(201).json(returnedBlog.toJSON())
     } catch (error) {
         next(error)
     }
@@ -59,7 +61,9 @@ router.post('/:id/comments', async (req, res, next) => {
         blog.comments = blog.comments.concat(comment)
         const savedBlog = await blog.save()
 
-        res.status(201).send(savedBlog)
+        const blogToReturn = await Blog.findById(savedBlog._id).populate('user')
+
+        res.status(201).send(blogToReturn)
     }
     catch (error) {
         next(error)
@@ -93,15 +97,15 @@ router.delete('/:id', async (req, res, next) => {
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.patch('/:id', async (req, res, next) => {
 
-    const blog = req.body
+    const likes = req.body.likes
 
     try {
-        const result = await Blog.findByIdAndUpdate(req.params.id, blog, {
+        const result = await Blog.findByIdAndUpdate(req.params.id, { likes }, {
             new: true,
             useFindAndModify: false
-        })
+        }).populate('user')
         res.json(result)
     } catch (error) {
         next(error)

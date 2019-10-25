@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 
 import blogService from './services/blogs'
 import { connect } from 'react-redux'
@@ -14,15 +14,23 @@ import Login from './components/login'
 import Blog from './pages/blog'
 import Notification from './components/notification'
 import './App.css'
+import Logo from './assets/penandpaper.png'
 
 
 
-function App({ initialize, user, setUser, setUsers, message }) {
+function App({ initialize, user, setUser, setUsers, message, blogs }) {
 
   useEffect(() => {
     initialize()
+  }, [initialize])
+
+  const usersFetch = useCallback(() => {
     setUsers()
-  }, [initialize, setUsers])
+  }, [setUsers])
+
+  useEffect(() => {
+    usersFetch()
+  }, [blogs, usersFetch])
 
   useEffect(() => {
     const jsonResponse = localStorage.getItem('savedUser')
@@ -40,7 +48,10 @@ function App({ initialize, user, setUser, setUsers, message }) {
         <div className="app-container">
           <Header />
           <div className='app-content'>
-            <h1>Blog app</h1>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+              <h1>Blog app</h1>
+              <img src={Logo} width='80' />
+            </div>
             {message && <Notification message={message} />}
             <Route exact path='/' render={() => user.hasOwnProperty('name') ? <Home /> : <Login setUser={setUser} />} />
             <Route exact path='/users' component={Users} />
@@ -55,7 +66,8 @@ function App({ initialize, user, setUser, setUsers, message }) {
 
 const mapStateToProps = state => ({
   user: state.user,
-  message: state.notification
+  message: state.notification,
+  blogs: state.blogs
 })
 
 const mapDispatchToProps = {

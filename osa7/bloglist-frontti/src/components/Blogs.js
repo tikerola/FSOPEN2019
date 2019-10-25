@@ -20,7 +20,9 @@ const Blogs = ({ user, blogs, addToBlogs, setMessage }) => {
         url
       })
 
+
       addToBlogs(res)
+      setShowForm(false)
       setMessage(`${res.title} by ${res.author} added`, 3000)
     } catch (error) {
       console.log('error: ', error.message)

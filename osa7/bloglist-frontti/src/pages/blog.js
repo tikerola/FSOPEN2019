@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { connect } from 'react-redux'
 import blogService from '../services/blogs'
 import { Input } from '../components/newBlogForm.styles'
@@ -21,18 +21,16 @@ const commentStyles = {
 const Blog = ({ blog, userId, update, removeBlog, history }) => {
   const [input, reset] = useField('text')
 
+
+  const username = useRef()
+
+  if(blog && blog.user.username)
+    username.current = blog.user.username
+
   const handleLike = async () => {
 
-    const newBlog = {
-      user: blog.user._id,
-      likes: 1,
-      title: blog.title,
-      author: blog.author,
-      url: blog.url
-    }
-
-
-    const returnedBlog = await blogService.put(blog.id, newBlog)
+    const returnedBlog = await blogService.patch(blog.id, { likes: 1 })
+    console.log(returnedBlog)
     update(returnedBlog)
 
   }

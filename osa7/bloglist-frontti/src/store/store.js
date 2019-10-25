@@ -3,7 +3,7 @@ import notificationReducer from '../reducers/notificationReducer'
 import blogsReducer from '../reducers/blogs'
 import userReducer from '../reducers/user'
 import usersReducer from '../reducers/users'
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
 const rootReducer = combineReducers({

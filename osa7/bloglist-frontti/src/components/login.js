@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { setMessage } from '../actions/notification'
 import { Button } from './Header.styles'
 import { Input, Label } from './newBlogForm.styles'
+import Logo from '../assets/penandpaper.png'
 
 
 
@@ -39,6 +40,7 @@ const Login = props => {
   return (
     <div style={{ width: '60%', margin: '70px auto 0' }}>
       <h2 style={{ color: '#ddd' }}>Log in to application</h2>
+      <img src={Logo} width='200' />
 
       <form >
         <div>
