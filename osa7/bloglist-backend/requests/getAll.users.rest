@@ -1,8 +1,1 @@
-POST http://localhost:3003/api/users
-Content-Type: application/json
-
-{
-    "username": "Masavain",
-    "name": "Matti Kyllönen",
-    "password": "ovaaliton***kaa"
-}
+GET http://localhost:3003/api/users

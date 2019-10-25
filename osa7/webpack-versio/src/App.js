@@ -14,8 +14,6 @@ import Login from './components/login'
 import Blog from './pages/blog'
 import Notification from './components/notification'
 import './App.css'
-import Logo from './assets/penandpaper.png'
-
 
 
 function App({ initialize, user, setUser, setUsers, message, blogs }) {
@@ -50,7 +48,7 @@ function App({ initialize, user, setUser, setUsers, message, blogs }) {
           <div className='app-content'>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
               <h1>Blog app</h1>
-              <img src={Logo} width='80' alt='logo' />
+              
             </div>
             {message && <Notification message={message} />}
             <Route exact path='/' render={() => user.hasOwnProperty('name') ? <Home /> : <Login setUser={setUser} />} />
